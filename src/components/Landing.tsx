@@ -135,15 +135,18 @@ function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
-        {/* LOGO VILLAGE NATUREZA */}
+        {/* LOGO - COM CÍRCULO BRANCO - AJUSTADO */}
         <a href="#top" className="flex min-w-0 items-center gap-2 font-display text-base font-extrabold tracking-tight text-white sm:text-xl">
-          <img 
-            src="/images/Logo-VN-white.png" 
-            alt="Village Natureza" 
-            className="navbar-logo"
-          />
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-md sm:h-16 sm:w-16">
+            <img 
+              src="/images/Canopus_50.png" 
+              alt="Village Natureza" 
+              className="h-16 w-16 object-contain sm:h-20 sm:w-20"
+            />
+          </div>
         </a>
 
+        {/* MENU DESKTOP */}
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
             <a
@@ -155,13 +158,14 @@ function Navbar() {
             </a>
           ))}
           <Button
-             asChild
-             className="glassmorphism rounded-full px-6 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:!bg-[color:var(--brand-green)] hover:brightness-110 active:scale-95 active:!bg-[color:var(--brand-green)]"
-            >
-          <a href="#contato">Agendar Visita</a>
+            asChild
+            className="glassmorphism rounded-full px-6 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:!bg-[color:var(--brand-green)] hover:brightness-110 active:scale-95 active:!bg-[color:var(--brand-green)]"
+          >
+            <a href="#contato">Agendar Visita</a>
           </Button>
         </nav>
 
+        {/* BOTÃO DO MENU MOBILE */}
         <button
           className="rounded-md p-2 text-white lg:hidden"
           onClick={() => setOpen((o) => !o)}
@@ -171,6 +175,7 @@ function Navbar() {
         </button>
       </div>
 
+      {/* MENU MOBILE - DROPDOWN */}
       {open && (
         <div className="border-t border-white/10 bg-[color:var(--brand-dark)] lg:hidden">
           <div className="flex flex-col gap-1 px-4 py-4 sm:px-6">
@@ -199,7 +204,8 @@ function Navbar() {
   );
 }
 
-/* ---------------- Hero ---------------- */
+/*======== Hero =========*/
+
 function Hero() {
   return (
     <section
@@ -210,8 +216,7 @@ function Hero() {
       <div
         className="absolute inset-0 opacity-40"
         style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80)",
+          backgroundImage: "url('/images/gallery/fachada.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -234,7 +239,7 @@ function Hero() {
             <img 
               src="/images/Logo-VN.png" 
               alt="Village Natureza" 
-              className="hero-logo"
+              className="h-10 w-auto object-contain sm:h-12" 
             />
           </div>
 
@@ -269,29 +274,30 @@ function Hero() {
           <div className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-6 sm:mt-14 sm:gap-6 sm:pt-8">
             {[
               { 
-                k: "2", 
-                v: "quartos" 
+                k: "+15", 
+                v: "Itens de Lazer" 
               },
               { 
                 k: (
                   <img 
                     src="/images/MCMV-logo.svg" 
                     alt="Minha Casa Minha Vida" 
-                    className="mcmv-logo align-middle" // ← APENAS adicionei align-middle
+                    className="h-12 w-auto object-contain sm:h-16" 
                   />
                 ), 
-                v: "acesso facilitado" 
+                v: "acesso facilitado",
+                className: "-mt-2 sm:-mt-3"  // ADICIONADO PARA SUBIR
               },
               { 
                 k: "24h", 
                 v: "segurança" 
               },
             ].map((s) => (
-              <div key={s.v} className="hero-stats-item">
-                <div className="hero-stats-value flex items-center"> {/* ← Adicionei flex items-center */}
+              <div key={s.v} className={`flex flex-col items-center justify-center text-center ${s.className || ''}`}>
+                <div className="flex items-center justify-center text-2xl font-bold text-[color:var(--brand-green)] sm:text-3xl">
                   {s.k}
                 </div>
-                <div className="hero-stats-label">{s.v}</div>
+                <div className="text-sm text-white/70 sm:text-base">{s.v}</div>
               </div>
             ))}
           </div>
@@ -304,14 +310,7 @@ function Hero() {
           className="hidden lg:block"
         >
           <div className="relative">
-            <div className="relative w-full max-w-2xl mx-auto">
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[color:var(--brand-green)]/30 to-[color:var(--brand-orange)]/20 blur-2xl" />
-              <img
-                src="./images/gallery/fachada.jpeg"
-                alt="Village Natureza"
-                className="relative w-full h-auto rounded-3xl border border-white/10 shadow-2xl"
-              />
-            </div>
+            {/* DA PARA ADICIONAR UMA IMAGEM OU OUTRO CONTEÚDO */}
           </div>
         </motion.div>
       </div>
@@ -570,7 +569,7 @@ function Localizacao() {
                 <div>
                   <p className="text-sm font-medium text-white">Localização do Empreendimento</p>
                   <p className="text-sm text-white/70">
-                    Av. Augusto Montenegro, Belém - PA
+                    Av. Mário Covas — Bairro Coqueiro, Belém/PA
                   </p>
                 </div>
               </div>
@@ -581,19 +580,26 @@ function Localizacao() {
               com fácil acesso e infraestrutura completa ao redor.
             </p>
 
-            {/* LISTA DE PONTOS PRÓXIMOS */}
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {near.map((n) => (
-                <div
-                  key={n}
-                  className="flex items-start gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm border border-white/10"
-                >
-                  <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--brand-green)]" />
-                  <span className="text-sm font-medium text-white/90">
-                    {n}
-                  </span>
-                </div>
-              ))}
+            {/* LISTA DE PONTOS PRÓXIMOS - CORRIGIDA */}
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              {near.map((n, index) => {
+                // Calcula se o item deve ser centralizado (último item quando total é ímpar)
+                const isLastOdd = index === near.length - 1 && near.length % 2 !== 0;
+                
+                return (
+                  <div
+                    key={n}
+                    className={`flex items-start gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm border border-white/10 ${
+                      isLastOdd ? "col-span-2 max-w-[50%] mx-auto w-full" : ""
+                    }`}
+                  >
+                    <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--brand-green)]" />
+                    <span className="text-sm font-medium text-white/90">
+                      {n}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
 
             <Button
@@ -654,7 +660,7 @@ function Localizacao() {
                   <div>
                     <p className="text-sm font-medium text-white">Endereço da Loja</p>
                     <p className="text-sm text-white/70">
-                      Av. Mário Covas — Bairro Coqueiro, Belém/PA
+                      Av. Augusto Montenegro 981, Belém - PA
                     </p>
                   </div>
                 </div>
@@ -864,7 +870,6 @@ function Plantas() {
       desc:
         "2 quartos, com opção de suíte reversível: o banheiro social possui 2 portas de acesso, uma para a área comum do apartamento e outra exclusiva para o quarto principal, funcionando como suíte. Sala de estar/jantar integrada, cozinha, banheiro social e varanda.",
       features: ["2 quartos", "Suíte reversível", "Varanda", "Cozinha integrada"],
-      highlight: true,
     },
     {
       title: "Planta Tipo B",
@@ -874,9 +879,9 @@ function Plantas() {
       desc:
         "2 quartos no layout padrão, banheiro social independente (sem a suíte reversível). Sala de estar/jantar integrada, cozinha, banheiro social e varanda.",
       features: ["2 quartos", "Banheiro social", "Varanda", "Cozinha integrada"],
-      highlight: false,
     },
   ];
+
   return (
     <section id="plantas" className="bg-secondary/40 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -900,94 +905,54 @@ function Plantas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`group relative flex flex-col rounded-3xl border p-6 transition-all hover:-translate-y-1 hover:shadow-2xl sm:p-10 ${
-                it.highlight
-                  ? "border-[color:var(--brand-green)] bg-[color:var(--brand-dark)] text-white shadow-xl"
-                  : "border-border bg-white"
-              }`}
+              className="group relative flex flex-col rounded-3xl border border-border bg-white p-6 transition-all hover:-translate-y-1 hover:bg-[color:var(--brand-dark)] hover:text-white hover:shadow-2xl sm:p-10"
             >
-              {it.highlight && (
-                <span className="absolute -top-3 left-6 rounded-full bg-[color:var(--brand-green)] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white sm:left-8 sm:text-xs">
-                  Mais procurada
-                </span>
-              )}
+              {/* ÍCONE */}
               <div className="flex items-center gap-3 sm:gap-4">
-                <div
-                  className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl sm:h-14 sm:w-14 ${
-                    it.highlight
-                      ? "bg-[color:var(--brand-green)] text-white"
-                      : "bg-[color:var(--brand-green)]/10 text-[color:var(--brand-green)]"
-                  }`}
-                >
+                <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--brand-green)]/10 text-[color:var(--brand-green)] transition-all group-hover:bg-[color:var(--brand-green)] group-hover:text-white sm:h-14 sm:w-14">
                   <it.icon className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
                 <div className="min-w-0">
-                  <h3
-                    className={`font-display text-xl font-bold sm:text-2xl ${
-                      it.highlight ? "text-white" : "text-[color:var(--brand-dark)]"
-                    }`}
-                  >
+                  <h3 className="font-display text-xl font-bold text-[color:var(--brand-dark)] transition-all group-hover:text-white sm:text-2xl">
                     {it.title}
                   </h3>
-                  <div
-                    className={`text-sm font-semibold uppercase tracking-wider ${
-                      it.highlight ? "text-[color:var(--brand-green)]" : "text-[color:var(--brand-green)]"
-                    }`}
-                  >
+                  <div className="text-sm font-semibold uppercase tracking-wider text-[color:var(--brand-green)]">
                     {it.area}
                   </div>
                 </div>
               </div>
 
-              <span
-                className={`mt-6 inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-semibold ${
-                  it.highlight
-                    ? "bg-white/10 text-white"
-                    : "bg-[color:var(--brand-green)]/10 text-[color:var(--brand-green)]"
-                }`}
-              >
+              {/* BADGE */}
+              <span className="mt-6 inline-flex w-fit items-center rounded-full bg-[color:var(--brand-green)]/10 px-3 py-1 text-xs font-semibold text-[color:var(--brand-green)] transition-all group-hover:bg-white/10 group-hover:text-white">
                 {it.badge}
               </span>
 
-              <p
-                className={`mt-4 flex-1 text-sm leading-relaxed ${
-                  it.highlight ? "text-white/85" : "text-muted-foreground"
-                }`}
-              >
+              {/* DESCRIÇÃO */}
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground transition-all group-hover:text-white/85">
                 {it.desc}
               </p>
 
+              {/* FEATURES */}
               <ul className="mt-6 grid grid-cols-2 gap-2">
                 {it.features.map((f) => (
                   <li
                     key={f}
-                    className={`flex items-center gap-2 text-sm ${
-                      it.highlight ? "text-white/90" : "text-[color:var(--brand-dark)]"
-                    }`}
+                    className="flex items-center gap-2 text-sm text-[color:var(--brand-dark)] transition-all group-hover:text-white/90"
                   >
-                    <CheckCircle2
-                      className={`h-4 w-4 ${
-                        it.highlight
-                          ? "text-[color:var(--brand-green)]"
-                          : "text-[color:var(--brand-green)]"
-                      }`}
-                    />
+                    <CheckCircle2 className="h-4 w-4 text-[color:var(--brand-green)]" />
                     {f}
                   </li>
                 ))}
               </ul>
 
-                <Button
-                  asChild
-                  className={`mt-8 rounded-full px-6 py-3 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-95 ${
-                  it.highlight
-                   ? "bg-[color:var(--brand-green)] hover:bg-[color:var(--brand-green)]/90"
-                   : "bg-[color:var(--brand-dark)] hover:bg-[color:var(--brand-dark)]/90"
-                 } hover:backdrop-blur-sm`}
-                >
+              {/* BOTÃO */}
+              <Button
+                asChild
+                className="mt-8 rounded-full bg-[color:var(--brand-dark)] px-6 py-3 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[color:var(--brand-green)] hover:brightness-110 active:scale-95 group-hover:bg-[color:var(--brand-green)] group-hover:hover:bg-[color:var(--brand-green)]/90"
+              >
                 <a href="#contato" className="flex items-center justify-center font-medium">
-                       Quero esta planta
-                    </a>
+                  Quero esta planta
+                </a>
               </Button>
             </motion.article>
           ))}
@@ -1018,23 +983,21 @@ function MCMV() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
           {...fadeUp}
-          className="flex flex-col items-center gap-6 rounded-3xl border border-border bg-secondary/40 p-6 text-center sm:flex-row sm:p-10 sm:text-left"
+          className="flex flex-col items-center gap-8 rounded-3xl border border-border bg-white p-6 text-center shadow-sm sm:flex-row sm:p-10 sm:text-left"
         >
-          {/* LOGO OFICIAL MINHA CASA MINHA VIDA AQUI — substituir este badge pela logo oficial quando disponível */}
+          {/* LOGO OFICIAL MINHA CASA MINHA VIDA - AINDA MAIOR */}
           <div
             role="img"
             aria-label="Minha Casa Minha Vida"
-            className="flex-shrink-0 rounded-2xl bg-[color:var(--mcmv-blue)] px-6 py-5 shadow-md"
+            className="flex h-56 w-56 items-center justify-center rounded-2xl bg-white p-6 shadow-md sm:h-64 sm:w-64"
           >
-            <div className="text-xs font-bold uppercase tracking-widest text-[color:var(--mcmv-yellow)]">
-              Governo Federal
-            </div>
-            <div className="mt-1 font-display text-xl font-extrabold leading-tight text-white">
-              Minha Casa
-              <br />
-              <span className="text-[color:var(--mcmv-yellow)]">Minha Vida</span>
-            </div>
+            <img 
+              src="/images/logo-mcmv.png" 
+              alt="Minha Casa Minha Vida" 
+              className="h-full w-full object-contain"
+            />
           </div>
+          
           <div className="min-w-0">
             <h3 className="font-display text-xl font-bold text-[color:var(--brand-dark)] sm:text-2xl lg:text-3xl">
               Empreendimento habilitado no Minha Casa, Minha Vida
@@ -1122,10 +1085,11 @@ function Contato() {
             />
           </div>
 
+          {/* BOTÃO WHATSAPP - CORRIGIDO */}
           <Button
             asChild
             size="lg"
-            className="glassmorphism mt-10 h-14 w-full rounded-full bg-[color:var(--brand-green)] text-base font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-95 sm:w-auto sm:px-10"
+            className="mt-10 h-14 w-full rounded-full bg-[color:var(--brand-green)] text-base font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-95 sm:w-auto sm:px-10"
           >
             <a href={WA} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="mr-2 h-5 w-5" /> Conversar no WhatsApp
@@ -1197,10 +1161,11 @@ function Contato() {
               />
             </Field>
 
+            {/* BOTÃO ENVIAR - CORRIGIDO */}
             <Button
               type="submit"
               size="lg"
-              className="glassmorphism h-14 w-full rounded-full bg-[color:var(--brand-green)] text-base font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-95"
+              className="h-14 w-full rounded-full bg-[color:var(--brand-green)] text-base font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-95"
             >
               Enviar e falar no WhatsApp
             </Button>
