@@ -1254,7 +1254,7 @@ function SiteFooter() {
             <img 
               src="/images/Canopus_50.png" 
               alt="Village Natureza" 
-              className="h-12 w-12 object-contain sm:h-14 sm:w-14"
+              className="h-16 w-16 object-contain sm:h-20 sm:w-20"
             />
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/70">
