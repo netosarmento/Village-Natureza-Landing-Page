@@ -963,7 +963,7 @@ function Plantas() {
             asChild
             size="lg"
             variant="outline"
-            className="glassmorphism w-full rounded-full border-[color:var(--brand-dark)] px-8 py-6 text-sm font-semibold text-[color:var(--brand-dark)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[color:var(--brand-dark)] hover:text-white active:scale-95 sm:w-auto sm:text-base"
+            className="w-full rounded-full border-[color:var(--brand-dark)] px-8 py-6 text-sm font-semibold text-[color:var(--brand-dark)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[color:var(--brand-dark)] hover:text-white active:scale-95 sm:w-auto sm:text-base"
           >
             <a href={MAPS_ROUTE_URL} target="_blank" rel="noopener noreferrer">
               <Navigation className="mr-2 h-5 w-5 shrink-0" />
@@ -1249,11 +1249,12 @@ function SiteFooter() {
     <footer className="bg-[color:var(--brand-dark)] py-12 text-white sm:py-14">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:grid-cols-2 sm:gap-10 sm:px-6 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2 font-display text-xl font-extrabold tracking-tight">
+          {/* LOGO COM CÍRCULO BRANCO - RESPONSIVO */}
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md sm:h-20 sm:w-20">
             <img 
-              src="/images/Logo-VN-white.png" 
+              src="/images/Canopus_50.png" 
               alt="Village Natureza" 
-              className="footer-logo"
+              className="h-12 w-12 object-contain sm:h-14 sm:w-14"
             />
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/70">
